@@ -1,6 +1,6 @@
 {
   "name": "@hregibo/pg-dbc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Basic Postgresql query simplifier, using types",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
