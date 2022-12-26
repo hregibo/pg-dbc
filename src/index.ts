@@ -52,7 +52,7 @@ export const get_client = async () => {
  */
 export const query = async <T extends QueryResultRow>(
   query: string,
-  params: any[]
+  params: any[] = []
 ): Promise<QueryResult<T>> => {
   let client: PoolClient | undefined;
   try {
