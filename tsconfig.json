@@ -4,9 +4,6 @@
     "outDir": "./build",
     "declarationDir": "./build",
     "declaration": true,
-    "types": [
-      "@types/pg"
-    ],
     "allowJs": false,
     "target": "es2017",
     "module": "commonjs",
