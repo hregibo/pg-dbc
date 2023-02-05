@@ -5,7 +5,7 @@
     "declarationDir": "./build",
     "declaration": true,
     "types": [
-      "pg"
+      "@types/pg"
     ],
     "allowJs": false,
     "target": "es2017",
