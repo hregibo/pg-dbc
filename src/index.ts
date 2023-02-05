@@ -1,9 +1,6 @@
 // imports from external packages
-/// <reference types="@types/pg" />
 import { Pool, PoolClient, PoolConfig, QueryResult, QueryResultRow } from "pg";
 // exports from externam packages
-/// <reference types="@types/pg" />
-export { PoolClient, QueryResult, PoolConfig, Pool } from "pg";
 export type migration = () => Promise<void>;
 
 // singletons
