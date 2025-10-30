@@ -1,5 +1,6 @@
 // imports from external packages
 import { Pool, PoolClient, PoolConfig, QueryResult, QueryResultRow } from "pg";
+import { Err, Ok, Result } from "ts-results";
 // exports from externam packages
 export { PoolClient, QueryResult, PoolConfig, Pool } from "pg";
 export type migration = () => Promise<void>;
@@ -58,6 +59,37 @@ export const query = async <T extends QueryResultRow>(
   try {
     client = await get_client();
     return await client.query<T, any[]>(query, params);
+  } finally {
+    if (client) {
+      client.release();
+    }
+  }
+};
+
+export type QueryError = {
+  type: "POSTGRES_QUERY_FAILURE";
+  error: Error;
+};
+export const querySafe = async <T extends QueryResultRow>(
+  query: string,
+  params: any[]
+): Promise<Result<QueryResult<T>, QueryError>> => {
+  let client: PoolClient | undefined;
+  try {
+    client = await get_client();
+    const resp = await client.query<T, any[]>(query, params);
+    return Ok(resp);
+  } catch (err) {
+    if (err instanceof Error) {
+      return Err({
+        type: "POSTGRES_QUERY_FAILURE",
+        error: err,
+      });
+    }
+    return Err({
+      type: "POSTGRES_QUERY_FAILURE",
+      error: new Error(String(err)),
+    });
   } finally {
     if (client) {
       client.release();

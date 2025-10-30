@@ -26,8 +26,9 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/pg": "~8.6.5",
     "pg": "~8.8.0",
-    "@types/pg": "~8.6.5"
+    "ts-results": "^3.3.0"
   },
   "devDependencies": {
     "@types/node": "~18.7.23",
